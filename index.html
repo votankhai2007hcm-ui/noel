@@ -1,265 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Merry Christmas!</title>
+<title>Merry Christmas</title>
 
 <style>
+    body{
+        margin:0;
+        font-family:Arial;
+        text-align:center;
+        color:white;
 
-:root{
-  --red:#d62828;
-  --green:#1b8c24;
-}
+        background:url('bg.jpg');
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+        height:100vh;
+        overflow:hidden;
+    }
 
-body{
-  margin:0;
-  height:100vh;
-  background:linear-gradient(135deg,var(--red),var(--green));
-  color:white;
-  overflow:hidden;
-  font-family:Arial;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-}
+    h1{
+        font-size:40px;
+        margin-top:30px;
+        text-shadow:0 0 10px black;
+    }
 
-/******** TITLE ********/
+    button{
+        padding:15px 25px;
+        font-size:18px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        margin-top:20px;
+        background:white;
+        color:black;
+    }
 
-h1{
-  font-size:4em;
-  margin:10px 0 0;
-  text-shadow:0 0 15px #fff;
-  animation: glow 2s infinite alternate;
-}
+    .box{
+        background:rgba(0,0,0,0.3);
+        padding:20px;
+        margin-top:150px;
+        width:80%;
+        max-width:500px;
+        border-radius:10px;
+        display:inline-block;
+    }
 
-@keyframes glow{
-  0%{text-shadow:0 0 7px #fff;}
-  100%{text-shadow:0 0 35px yellow;}
-}
-
-h3{
-  margin:0;
-  font-weight:lighter;
-  margin-bottom:20px;
-}
-
-/******** BUTTON ********/
-
-button{
-  background:white;
-  border:none;
-  padding:15px 35px;
-  font-size:20px;
-  border-radius:50px;
-  cursor:pointer;
-  font-weight:bold;
-  color:var(--green);
-  transition:0.2s;
-  margin-bottom:15px;
-}
-button:hover{transform:scale(1.1);background:yellow;}
-
-/******** SNOW ********/
-
-#snowflakes span{
-  position:absolute;
-  top:-10px;
-  color:white;
-  font-size:20px;
-  animation: fall linear infinite;
-  filter:drop-shadow(0 0 5px white);
-}
-
-@keyframes fall{
-  0%{transform:translateY(0) rotate(0deg);}
-  100%{transform:translateY(110vh) rotate(360deg);}
-}
-
-/******** TREE ********/
-
-.treeWrap{position:relative;}
-
-/* tree form */
-.tree{
-  margin-top:20px;
-  position:relative;
-  width:0;height:0;
-  border-left:120px solid transparent;
-  border-right:120px solid transparent;
-  border-bottom:160px solid #0a8a0a;
-  filter:drop-shadow(0 0 15px white);
-  animation: treeGlow 2s infinite alternate;
-}
-
-.tree:before{
-  content:'';
-  position:absolute;
-  top:50px;left:-90px;
-  width:0;height:0;
-  border-left:150px solid transparent;
-  border-right:150px solid transparent;
-  border-bottom:180px solid #0c9c0c;
-}
-
-.tree:after{
-  content:'';
-  position:absolute;
-  top:120px;left:-60px;
-  width:0;height:0;
-  border-left:90px solid transparent;
-  border-right:90px solid transparent;
-  border-bottom:100px solid #0fa30f;
-}
-
-@keyframes treeGlow{
-  0%{filter:drop-shadow(0 0 5px yellow);}
-  100%{filter:drop-shadow(0 0 35px red);}
-}
-
-/* trunk */
-.trunk{
-  width:60px;height:80px;
-  background:#5b3a12;
-  border-radius:10px;
-  margin:auto;
-}
-
-/******** TREE LED LIGHT ********/
-
-.led{
-  position:absolute;
-  width:12px;height:12px;
-  border-radius:50%;
-  background:yellow;
-  animation: ledBlink .6s infinite alternate;
-}
-
-@keyframes ledBlink{
-  0%{opacity:0.1;}
-  100%{opacity:1;}
-}
-
-/******** GIFT DROPS ********/
-
-#giftArea span{
-  position:absolute;
-  top:200px;
-  font-size:25px;
-  animation: giftFall linear forwards;
-}
-
-@keyframes giftFall{
-  0%{transform:translateY(0) rotate(0deg);}
-  100%{transform:translateY(90vh) rotate(360deg);}
-}
-
-/******** SHOOTING STARS ********/
-
-.star{
-  position:absolute;
-  top:-50px;
-  font-size:20px;
-  opacity:0.8;
-  animation: starfall 3s linear;
-}
-
-@keyframes starfall{
-  0%{transform:translate(0,0);}
-  100%{transform:translate(100vw,100vh);opacity:0;}
-}
-
-/******** SANTA FLY ********/
-
-.santa{
-  position:absolute;
-  top:20px;
-  font-size:50px;
-  animation: santaFly 8s linear infinite;
-}
-
-@keyframes santaFly{
-  0%{left:-100px;}
-  100%{left:110vw;}
-}
-
+    /* giấu video youtube */
+    #yt {
+        width:1px;
+        height:1px;
+        opacity:0;
+        pointer-events:none;
+        position:absolute;
+        left:-1000px;
+        top:-1000px;
+    }
 </style>
 </head>
+
 <body>
 
-<h1>🎄 Merry Christmas 🎅</h1>
-<h3>Wish you peace & happiness ❄️</h3>
-
-<button onclick="wish()">Click to get a Christmas Wish! 🎁</button>
-
-<!-- 🎅 Santa fly -->
-<div class="santa">🎅🛷💨</div>
-
-<!-- tree -->
-<div class="treeWrap">
-  <div class="tree"></div>
-  <div class="trunk"></div>
-
-  <!-- led positions -->
-  <div class="led" style="top:30px;left:-20px;"></div>
-  <div class="led" style="top:50px;left:50px;"></div>
-  <div class="led" style="top:90px;left:-40px;"></div>
-  <div class="led" style="top:140px;left:20px;"></div>
-  <div class="led" style="top:180px;left:-10px;"></div>
-  <div class="led" style="top:220px;left:45px;"></div>
-
+<div class="box">
+    <h1>🎄 Merry Christmas 🎄</h1>
+    <p>Chúc bạn một mùa Giáng Sinh an lành ❤️</p>
+    <button onclick="toggleMusic()">Bật / Tắt Nhạc</button>
 </div>
 
-<!-- gift area -->
-<div id="giftArea"></div>
-
-<!-- snow -->
-<div id="snowflakes"></div>
-
-<!-- background music -->
-<audio autoplay loop>
-<source src="https://www.dropbox.com/s/ybz9ubksh3ldqnb/jinglebells.mp3?raw=1" type="audio/mpeg">
-</audio>
+<!-- YouTube AUDIO -->
+<iframe 
+    id="yt"
+    src="https://www.youtube.com/embed/n-liO0Yjay8?&autoplay=1&mute=0&loop=1&playlist=n-liO0Yjay8"
+    allow="autoplay">
+</iframe>
 
 <script>
+let frame = document.getElementById("yt");
 
-/******** WISH ********/
-function wish(){
-alert("🎄 Merry Christmas! ✨\nChúc bạn thật nhiều niềm vui và thành công!");
+function toggleMusic(){
+    if(frame.src.includes("mute=0")) {
+        frame.src = frame.src.replace("mute=0", "mute=1");
+    } else {
+        frame.src = frame.src.replace("mute=1", "mute=0");
+    }
 }
-
-/******** SNOW ********/
-setInterval(()=>{
-  const snow=document.createElement("span");
-  snow.innerHTML="❄";
-  snow.style.left=Math.random()*100+"vw";
-  snow.style.fontSize=(15+Math.random()*25)+"px";
-  snow.style.animationDuration=1.5+Math.random()*2+"s";
-  document.getElementById("snowflakes").appendChild(snow);
-  setTimeout(()=>snow.remove(),4000);
-},50);
-
-/******** GIFTS ********/
-setInterval(()=>{
-  const gift=document.createElement("span");
-  gift.innerHTML="🎁";
-  gift.style.left=Math.random()*100+"vw";
-  gift.style.animationDuration=3+Math.random()*3+"s";
-  document.getElementById("giftArea").appendChild(gift);
-  setTimeout(()=>gift.remove(),6000);
-},800);
-
-/******** SHOOTING STARS ********/
-setInterval(()=>{
-  const star=document.createElement("div");
-  star.innerHTML="🌠";
-  star.className="star";
-  star.style.left=Math.random()*50+"vw";
-  document.body.appendChild(star);
-  setTimeout(()=>star.remove(),3000);
-},2000);
-
 </script>
 
 </body>
