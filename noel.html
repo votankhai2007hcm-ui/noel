@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noel Premium</title>
+
+<style>
+    *{margin:0; padding:0; box-sizing:border-box;}
+    body{
+        overflow:hidden;
+        font-family:Arial;
+        color:#fff;
+        text-align:center;
+        background:url("https://i.imgur.com/0bI7CXO.jpg") no-repeat center/cover;
+        height:100vh;
+    }
+
+    h1{
+        margin-top:15px;
+        font-size:30px;
+        text-shadow:0 0 15px red;
+        animation: glow 3s infinite;
+    }
+
+    @keyframes glow{
+        50%{color:#0ff;}
+    }
+
+    /* Countdown */
+    #countdown{
+        margin-top:8px;
+        font-size:24px;
+        font-weight:bold;
+        text-shadow:0 0 10px gold;
+    }
+
+    /* Snowman */
+    .snowman{
+        position:absolute;
+        bottom:15px;
+        right:15px;
+        width:120px;
+        animation:snowman 3s infinite;
+    }
+    @keyframes snowman{
+        0%{filter:brightness(1);}
+        50%{filter:brightness(2);}
+        100%{filter:brightness(1);}
+    }
+
+    /* Xmas tree */
+    .tree{
+        position:absolute;
+        left:15px;
+        bottom:10px;
+        width:120px;
+        animation:blink 1s infinite;
+    }
+    @keyframes blink{
+        50%{filter:brightness(3);}
+    }
+
+    /* Gift Box */
+    .gift{
+        width:130px;
+        position:absolute;
+        left:calc(50% - 65px);
+        bottom:10px;
+        cursor:pointer;
+        transition:0.4s;
+    }
+    .gift:hover{
+        transform:scale(1.2);
+        filter:drop-shadow(0 0 30px yellow);
+    }
+
+    /* Snow */
+    .snowflake{
+        position:absolute;
+        top:-10px;
+        color:white;
+        font-size:20px;
+        animation: fall linear infinite;
+        pointer-events:none;
+    }
+    @keyframes fall{
+        to{transform:translateY(110vh);opacity:0;}
+    }
+
+    /* Fireworks */
+    .firework{
+        position:absolute;
+        width:5px;
+        height:5px;
+        border-radius:50%;
+        background:yellow;
+        pointer-events:none;
+        animation:boom 1s ease-out forwards;
+    }
+    @keyframes boom{
+        to{opacity:0;transform:scale(12);}
+    }
+
+    @media(max-width:700px){
+        h1{font-size:24px;}
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎅 Merry Christmas 🎄</h1>
+
+<div id="countdown"></div>
+
+<!-- Tree -->
+<img class="tree" src="https://i.imgur.com/Y0ZrIVv.png">
+
+<!-- Snowman -->
+<img class="snowman" src="https://i.imgur.com/JWwKroK.png">
+
+<!-- Gift -->
+<img class="gift" id="gift" src="https://i.imgur.com/JoAeAYA.png">
+
+<!-- Music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/11/29/audio_85a36bb196.mp3?filename=jingle-bells-10909.mp3">
+</audio>
+
+<script>
+/* Snow */
+function snow(){
+    const s=document.createElement("div");
+    s.className="snowflake";
+    s.innerText="❄";
+    s.style.left=Math.random()*100+"vw";
+    s.style.fontSize=15+Math.random()*20+"px";
+    s.style.animationDuration=2+Math.random()*3+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),5000);
+}
+setInterval(snow,80);
+
+/* Fireworks */
+function fireworks(){
+    const w=document.createElement("div");
+    w.className="firework";
+    w.style.left=Math.random()*100+"vw";
+    w.style.top=Math.random()*80+"vh";
+    w.style.background=["red","yellow","blue","pink","lime","cyan"]
+    [Math.floor(Math.random()*6)];
+    document.body.appendChild(w);
+    setTimeout(()=>w.remove(),800);
+}
+setInterval(fireworks,900);
+
+/* Countdown */
+function countdown(){
+    const target=new Date("Dec 25 2025 00:00:00").getTime();
+    const now=new Date().getTime();
+    const diff=target-now;
+
+    const days=Math.floor(diff/(1000*60*60*24));
+    const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const mins=Math.floor((diff%(1000*60*60))/(1000*60));
+    const secs=Math.floor((diff%(1000*60))/1000);
+
+    if(diff<=0){
+        document.getElementById("countdown").innerHTML="🎄 Noel Đã Đến! 🎁";
+    } else {
+        document.getElementById("countdown").innerHTML =
+        days+"d "+hours+"h "+mins+"m "+secs+"s";
+    }
+}
+setInterval(countdown,1000);
+
+/* Gift click effect */
+document.getElementById("gift").onclick=()=>{
+    alert("🎁 Chúc bạn Giáng Sinh vui vẻ!");
+};
+</script>
+
+</body>
+</html>
