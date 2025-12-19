@@ -1,184 +1,265 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noel Premium</title>
+<title>Merry Christmas!</title>
 
 <style>
-    *{margin:0; padding:0; box-sizing:border-box;}
-    body{
-        overflow:hidden;
-        font-family:Arial;
-        color:#fff;
-        text-align:center;
-        background:url("https://i.imgur.com/0bI7CXO.jpg") no-repeat center/cover;
-        height:100vh;
-    }
 
-    h1{
-        margin-top:15px;
-        font-size:30px;
-        text-shadow:0 0 15px red;
-        animation: glow 3s infinite;
-    }
+:root{
+  --red:#d62828;
+  --green:#1b8c24;
+}
 
-    @keyframes glow{
-        50%{color:#0ff;}
-    }
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,var(--red),var(--green));
+  color:white;
+  overflow:hidden;
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
 
-    /* Countdown */
-    #countdown{
-        margin-top:8px;
-        font-size:24px;
-        font-weight:bold;
-        text-shadow:0 0 10px gold;
-    }
+/******** TITLE ********/
 
-    /* Snowman */
-    .snowman{
-        position:absolute;
-        bottom:15px;
-        right:15px;
-        width:120px;
-        animation:snowman 3s infinite;
-    }
-    @keyframes snowman{
-        0%{filter:brightness(1);}
-        50%{filter:brightness(2);}
-        100%{filter:brightness(1);}
-    }
+h1{
+  font-size:4em;
+  margin:10px 0 0;
+  text-shadow:0 0 15px #fff;
+  animation: glow 2s infinite alternate;
+}
 
-    /* Xmas tree */
-    .tree{
-        position:absolute;
-        left:15px;
-        bottom:10px;
-        width:120px;
-        animation:blink 1s infinite;
-    }
-    @keyframes blink{
-        50%{filter:brightness(3);}
-    }
+@keyframes glow{
+  0%{text-shadow:0 0 7px #fff;}
+  100%{text-shadow:0 0 35px yellow;}
+}
 
-    /* Gift Box */
-    .gift{
-        width:130px;
-        position:absolute;
-        left:calc(50% - 65px);
-        bottom:10px;
-        cursor:pointer;
-        transition:0.4s;
-    }
-    .gift:hover{
-        transform:scale(1.2);
-        filter:drop-shadow(0 0 30px yellow);
-    }
+h3{
+  margin:0;
+  font-weight:lighter;
+  margin-bottom:20px;
+}
 
-    /* Snow */
-    .snowflake{
-        position:absolute;
-        top:-10px;
-        color:white;
-        font-size:20px;
-        animation: fall linear infinite;
-        pointer-events:none;
-    }
-    @keyframes fall{
-        to{transform:translateY(110vh);opacity:0;}
-    }
+/******** BUTTON ********/
 
-    /* Fireworks */
-    .firework{
-        position:absolute;
-        width:5px;
-        height:5px;
-        border-radius:50%;
-        background:yellow;
-        pointer-events:none;
-        animation:boom 1s ease-out forwards;
-    }
-    @keyframes boom{
-        to{opacity:0;transform:scale(12);}
-    }
+button{
+  background:white;
+  border:none;
+  padding:15px 35px;
+  font-size:20px;
+  border-radius:50px;
+  cursor:pointer;
+  font-weight:bold;
+  color:var(--green);
+  transition:0.2s;
+  margin-bottom:15px;
+}
+button:hover{transform:scale(1.1);background:yellow;}
 
-    @media(max-width:700px){
-        h1{font-size:24px;}
-    }
+/******** SNOW ********/
+
+#snowflakes span{
+  position:absolute;
+  top:-10px;
+  color:white;
+  font-size:20px;
+  animation: fall linear infinite;
+  filter:drop-shadow(0 0 5px white);
+}
+
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/******** TREE ********/
+
+.treeWrap{position:relative;}
+
+/* tree form */
+.tree{
+  margin-top:20px;
+  position:relative;
+  width:0;height:0;
+  border-left:120px solid transparent;
+  border-right:120px solid transparent;
+  border-bottom:160px solid #0a8a0a;
+  filter:drop-shadow(0 0 15px white);
+  animation: treeGlow 2s infinite alternate;
+}
+
+.tree:before{
+  content:'';
+  position:absolute;
+  top:50px;left:-90px;
+  width:0;height:0;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-bottom:180px solid #0c9c0c;
+}
+
+.tree:after{
+  content:'';
+  position:absolute;
+  top:120px;left:-60px;
+  width:0;height:0;
+  border-left:90px solid transparent;
+  border-right:90px solid transparent;
+  border-bottom:100px solid #0fa30f;
+}
+
+@keyframes treeGlow{
+  0%{filter:drop-shadow(0 0 5px yellow);}
+  100%{filter:drop-shadow(0 0 35px red);}
+}
+
+/* trunk */
+.trunk{
+  width:60px;height:80px;
+  background:#5b3a12;
+  border-radius:10px;
+  margin:auto;
+}
+
+/******** TREE LED LIGHT ********/
+
+.led{
+  position:absolute;
+  width:12px;height:12px;
+  border-radius:50%;
+  background:yellow;
+  animation: ledBlink .6s infinite alternate;
+}
+
+@keyframes ledBlink{
+  0%{opacity:0.1;}
+  100%{opacity:1;}
+}
+
+/******** GIFT DROPS ********/
+
+#giftArea span{
+  position:absolute;
+  top:200px;
+  font-size:25px;
+  animation: giftFall linear forwards;
+}
+
+@keyframes giftFall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(90vh) rotate(360deg);}
+}
+
+/******** SHOOTING STARS ********/
+
+.star{
+  position:absolute;
+  top:-50px;
+  font-size:20px;
+  opacity:0.8;
+  animation: starfall 3s linear;
+}
+
+@keyframes starfall{
+  0%{transform:translate(0,0);}
+  100%{transform:translate(100vw,100vh);opacity:0;}
+}
+
+/******** SANTA FLY ********/
+
+.santa{
+  position:absolute;
+  top:20px;
+  font-size:50px;
+  animation: santaFly 8s linear infinite;
+}
+
+@keyframes santaFly{
+  0%{left:-100px;}
+  100%{left:110vw;}
+}
+
 </style>
 </head>
-
 <body>
 
-<h1>🎅 Merry Christmas 🎄</h1>
+<h1>🎄 Merry Christmas 🎅</h1>
+<h3>Wish you peace & happiness ❄️</h3>
 
-<div id="countdown"></div>
+<button onclick="wish()">Click to get a Christmas Wish! 🎁</button>
 
-<!-- Tree -->
-<img class="tree" src="https://i.imgur.com/Y0ZrIVv.png">
+<!-- 🎅 Santa fly -->
+<div class="santa">🎅🛷💨</div>
 
-<!-- Snowman -->
-<img class="snowman" src="https://i.imgur.com/JWwKroK.png">
+<!-- tree -->
+<div class="treeWrap">
+  <div class="tree"></div>
+  <div class="trunk"></div>
 
-<!-- Gift -->
-<img class="gift" id="gift" src="https://i.imgur.com/JoAeAYA.png">
+  <!-- led positions -->
+  <div class="led" style="top:30px;left:-20px;"></div>
+  <div class="led" style="top:50px;left:50px;"></div>
+  <div class="led" style="top:90px;left:-40px;"></div>
+  <div class="led" style="top:140px;left:20px;"></div>
+  <div class="led" style="top:180px;left:-10px;"></div>
+  <div class="led" style="top:220px;left:45px;"></div>
 
-<!-- Music -->
+</div>
+
+<!-- gift area -->
+<div id="giftArea"></div>
+
+<!-- snow -->
+<div id="snowflakes"></div>
+
+<!-- background music -->
 <audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2021/11/29/audio_85a36bb196.mp3?filename=jingle-bells-10909.mp3">
+<source src="https://www.dropbox.com/s/ybz9ubksh3ldqnb/jinglebells.mp3?raw=1" type="audio/mpeg">
 </audio>
 
 <script>
-/* Snow */
-function snow(){
-    const s=document.createElement("div");
-    s.className="snowflake";
-    s.innerText="❄";
-    s.style.left=Math.random()*100+"vw";
-    s.style.fontSize=15+Math.random()*20+"px";
-    s.style.animationDuration=2+Math.random()*3+"s";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),5000);
+
+/******** WISH ********/
+function wish(){
+alert("🎄 Merry Christmas! ✨\nChúc bạn thật nhiều niềm vui và thành công!");
 }
-setInterval(snow,80);
 
-/* Fireworks */
-function fireworks(){
-    const w=document.createElement("div");
-    w.className="firework";
-    w.style.left=Math.random()*100+"vw";
-    w.style.top=Math.random()*80+"vh";
-    w.style.background=["red","yellow","blue","pink","lime","cyan"]
-    [Math.floor(Math.random()*6)];
-    document.body.appendChild(w);
-    setTimeout(()=>w.remove(),800);
-}
-setInterval(fireworks,900);
+/******** SNOW ********/
+setInterval(()=>{
+  const snow=document.createElement("span");
+  snow.innerHTML="❄";
+  snow.style.left=Math.random()*100+"vw";
+  snow.style.fontSize=(15+Math.random()*25)+"px";
+  snow.style.animationDuration=1.5+Math.random()*2+"s";
+  document.getElementById("snowflakes").appendChild(snow);
+  setTimeout(()=>snow.remove(),4000);
+},50);
 
-/* Countdown */
-function countdown(){
-    const target=new Date("Dec 25 2025 00:00:00").getTime();
-    const now=new Date().getTime();
-    const diff=target-now;
+/******** GIFTS ********/
+setInterval(()=>{
+  const gift=document.createElement("span");
+  gift.innerHTML="🎁";
+  gift.style.left=Math.random()*100+"vw";
+  gift.style.animationDuration=3+Math.random()*3+"s";
+  document.getElementById("giftArea").appendChild(gift);
+  setTimeout(()=>gift.remove(),6000);
+},800);
 
-    const days=Math.floor(diff/(1000*60*60*24));
-    const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-    const mins=Math.floor((diff%(1000*60*60))/(1000*60));
-    const secs=Math.floor((diff%(1000*60))/1000);
+/******** SHOOTING STARS ********/
+setInterval(()=>{
+  const star=document.createElement("div");
+  star.innerHTML="🌠";
+  star.className="star";
+  star.style.left=Math.random()*50+"vw";
+  document.body.appendChild(star);
+  setTimeout(()=>star.remove(),3000);
+},2000);
 
-    if(diff<=0){
-        document.getElementById("countdown").innerHTML="🎄 Noel Đã Đến! 🎁";
-    } else {
-        document.getElementById("countdown").innerHTML =
-        days+"d "+hours+"h "+mins+"m "+secs+"s";
-    }
-}
-setInterval(countdown,1000);
-
-/* Gift click effect */
-document.getElementById("gift").onclick=()=>{
-    alert("🎁 Chúc bạn Giáng Sinh vui vẻ!");
-};
 </script>
 
 </body>
